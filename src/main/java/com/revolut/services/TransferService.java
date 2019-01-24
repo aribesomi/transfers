@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revolut.daos.TransferDAO;
 import com.revolut.daos.impl.TransferDAOImpl;
 import com.revolut.entities.Transfer;
 import com.revolut.exceptions.AppException;
@@ -24,7 +25,7 @@ import com.revolut.exceptions.DAOException;
 public class TransferService {
 
 	private static Logger logger = LogManager.getLogger(AccountService.class);
-	private final TransferDAOImpl transferDAO = new TransferDAOImpl();
+	private final TransferDAO transferDAO = new TransferDAOImpl();
 	
 	
 	@GET

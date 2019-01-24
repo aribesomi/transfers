@@ -44,18 +44,16 @@ public class Account implements Serializable{
 		this.id = id;
 	}
 	
-	public Account(Long id, String accountIdentification, BigDecimal balance, Currency currency) {
+	public Account(Long id, String accountIdentification, BigDecimal balance) {
 		super();
 		this.id = id;
 		this.accountIdentification = accountIdentification;
 		this.balance = balance;
-		this.currency = currency;
 	}
 	
-	public Account(String accountIdentification, BigDecimal balance, Currency currency) {
+	public Account(String accountIdentification, BigDecimal balance) {
 		this.accountIdentification = accountIdentification;
 		this.balance = balance;
-		this.currency = currency;
 	}
 	
 	@Override

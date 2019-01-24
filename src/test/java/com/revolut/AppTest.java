@@ -77,7 +77,8 @@ public class AppTest extends JerseyTest {
 	
 	@Test
     public void testAccountCreate() {
-		Account accountToCreate = new Account("111111111111111111",BigDecimal.ZERO,Currency.GBP);
+		Account accountToCreate = new Account("111111111111111111",BigDecimal.ZERO);
+		accountToCreate.setCurrency(Currency.GBP);
         Response output = target("/accounts/create").request().post(Entity.entity(accountToCreate, MediaType.APPLICATION_JSON));
         assertEquals("should return status 200", 200, output.getStatus());
         Account created = output.readEntity(Account.class);

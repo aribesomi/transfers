@@ -127,7 +127,8 @@ public class TransferDAOImpl extends GenericDAO implements TransferDAO {
 			selectPS.setLong(1, transfer.getFrom().getId());
 			selectRS = selectPS.executeQuery();
 			if(selectRS.next()){
-				currentFromAccount = new Account(selectRS.getLong("id"), selectRS.getString("accountID"), selectRS.getBigDecimal("balance"), Currency.valueOf(selectRS.getString("currency")));
+				currentFromAccount = new Account(selectRS.getLong("id"), selectRS.getString("accountID"), selectRS.getBigDecimal("balance"));
+				currentFromAccount.setCurrency(Currency.valueOf(selectRS.getString("currency")));
 				logger.debug("From account found " + currentFromAccount);
 			}else{
 				throw new DAOException("Can not get account information. The transfer Can not be processed at this moment");
@@ -138,7 +139,8 @@ public class TransferDAOImpl extends GenericDAO implements TransferDAO {
 			selectPS.setLong(1, transfer.getTo().getId());
 			selectRS = selectPS.executeQuery();
 			if(selectRS.next()){
-				currentToAccount = new Account(selectRS.getLong("id"), selectRS.getString("accountID"), selectRS.getBigDecimal("balance"), Currency.valueOf(selectRS.getString("currency")));
+				currentToAccount = new Account(selectRS.getLong("id"), selectRS.getString("accountID"), selectRS.getBigDecimal("balance"));
+				currentToAccount.setCurrency(Currency.valueOf(selectRS.getString("currency")));
 				logger.debug("To account found " + currentToAccount);
 			}else{
 				throw new DAOException("Can not get account information. The transfer Can not be processed at this moment");

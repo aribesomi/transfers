@@ -1,7 +1,9 @@
 package com.revolut.daos.impl;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -22,7 +24,11 @@ public class ConfigurationTestDAOImpl extends GenericDAO implements Configuratio
 		try {
 			RunScript.execute(conn, new FileReader("src/test/resources/initialTestData.sql"));
 		} catch (FileNotFoundException e) {
-			logger.error(e);
+			try {
+				RunScript.execute(conn, new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/initialTestData.sql"))));
+			} catch (SQLException sqlException) {
+				logger.error(e);
+			}
 		} catch (SQLException e) {
 			logger.error(e);
 		}

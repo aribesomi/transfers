@@ -4,3 +4,7 @@
 /target/*
 tests-logs/transfers-debug.log
 tests-logs/transfers-error.log
+dependency-reduced-pom.xml
+logs/transfers-debug.log
+logs/transfers-error.log
+tests-logs/transfers-trace-2019-01-23.log

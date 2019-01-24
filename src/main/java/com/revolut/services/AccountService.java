@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revolut.daos.AccountDAO;
 import com.revolut.daos.impl.AccountDAOImpl;
 import com.revolut.entities.Account;
 import com.revolut.exceptions.AppException;
@@ -25,7 +26,7 @@ import com.revolut.exceptions.DAOException;
 public class AccountService {
 
 	private static Logger logger = LogManager.getLogger(AccountService.class);
-	private final AccountDAOImpl accountDAO = new AccountDAOImpl();
+	private final AccountDAO accountDAO = new AccountDAOImpl();
 	
 	@GET
     @Path("/list")
