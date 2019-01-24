@@ -65,7 +65,7 @@ public class AccountService {
     }
 	
 	@PUT
-	@Path("/update/{id}")
+	@Path("/{id}")
     public Account update(@PathParam("id") Long id, Account account){
 		try {
 			Account originalAccount = accountDAO.findById(id);

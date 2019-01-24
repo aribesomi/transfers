@@ -2,3 +2,5 @@
 .classpath
 .settings/org.eclipse.jdt.core.prefs
 /target/*
+tests-logs/transfers-debug.log
+tests-logs/transfers-error.log

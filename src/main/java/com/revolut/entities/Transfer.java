@@ -4,7 +4,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+import javax.annotation.PostConstruct;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.revolut.utils.InstantDeserializer;
+import com.revolut.utils.InstantSerializer;
 
 public class Transfer implements Serializable{
 
@@ -15,7 +23,9 @@ public class Transfer implements Serializable{
 	private BigDecimal value;
 	private String description;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+	@JsonDeserialize(using = InstantDeserializer.class)
+	@JsonSerialize(using = InstantSerializer.class)
 	private Instant created;
 	
 	public Transfer(Long id, Account from, Account to, BigDecimal value, String description, Instant created) {
@@ -36,13 +46,20 @@ public class Transfer implements Serializable{
 		this.created = Instant.now();
 	}
 	
+	public Transfer(Account from, Account to, BigDecimal value, String description) {
+		this.from = from;
+		this.to = to;
+		this.value = value;
+		this.description = description;
+		this.created = Instant.now();
+	}
+	
 	public Transfer(Long id) {
 		this.id = id;
 	}
 	
 	public Transfer() {
 	}
-
 
 	public Long getId() {
 		return id;
@@ -137,6 +154,12 @@ public class Transfer implements Serializable{
 		} else if (!value.equals(other.value))
 			return false;
 		return true;
+	}
+	
+	@PostConstruct
+	public void setUp() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule(new JavaTimeModule());
 	}
 	
 }

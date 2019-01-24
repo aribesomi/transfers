@@ -1,6 +1,6 @@
 package com.revolut.daos;
 
-public interface TestDAO{
+public interface ConfigurationDAO{
 	
 	void loadInitialData();
 }

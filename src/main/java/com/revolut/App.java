@@ -7,15 +7,22 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
 
-import com.revolut.daos.impl.TestDAOImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.revolut.daos.impl.ConfigurationDAOImpl;
 
 public class App {
 	private static final Logger logger = LogManager.getLogger(App.class);
 	
 	public static void main(String[] args) throws Exception {
-		TestDAOImpl testDAO = new TestDAOImpl();
-		testDAO.loadInitialData();
-
+		ConfigurationDAOImpl configurationDAO = new ConfigurationDAOImpl();
+		configurationDAO.loadInitialData();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule(new JavaTimeModule());
+		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		
 		Server server = new Server(8080);
 		ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 		context.setContextPath("/");

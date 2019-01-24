@@ -39,9 +39,20 @@ public class Account implements Serializable{
 	public Account() {
 	}
 	
+	public Account(Long id) {
+		super();
+		this.id = id;
+	}
+	
 	public Account(Long id, String accountIdentification, BigDecimal balance, Currency currency) {
 		super();
 		this.id = id;
+		this.accountIdentification = accountIdentification;
+		this.balance = balance;
+		this.currency = currency;
+	}
+	
+	public Account(String accountIdentification, BigDecimal balance, Currency currency) {
 		this.accountIdentification = accountIdentification;
 		this.balance = balance;
 		this.currency = currency;

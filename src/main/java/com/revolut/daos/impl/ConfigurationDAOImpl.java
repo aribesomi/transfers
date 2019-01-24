@@ -10,11 +10,11 @@ import org.apache.logging.log4j.Logger;
 import org.h2.tools.RunScript;
 
 import com.revolut.daos.GenericDAO;
-import com.revolut.daos.TestDAO;
+import com.revolut.daos.ConfigurationDAO;
 
-public class TestDAOImpl extends GenericDAO implements TestDAO{
+public class ConfigurationDAOImpl extends GenericDAO implements ConfigurationDAO{
 
-	private static final Logger logger = LogManager.getLogger(TestDAOImpl.class);
+	private static final Logger logger = LogManager.getLogger(ConfigurationDAOImpl.class);
 	
 	@Override
 	public void loadInitialData() {

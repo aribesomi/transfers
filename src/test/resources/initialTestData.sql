@@ -23,3 +23,6 @@ value DECIMAL(10,2) NOT NULL,
 description VARCHAR(128),
 created DATETIME NOT NULL
 );
+
+INSERT INTO transfers (idAccountFrom,idAccountTo,value,description,created) VALUES (1,2,100.00,'Test Transfer 1',NOW());
+INSERT INTO transfers (idAccountFrom,idAccountTo,value,description,created) VALUES (4,3,50.00,'Test Transfer 2',NOW());
